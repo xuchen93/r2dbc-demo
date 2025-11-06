@@ -3,6 +3,14 @@ server:
   servlet:
     context-path: /r2dbc
   shutdown: graceful
+#  tomcat:
+#    max-threads: 3
+#    max-connections: 3
+#    accept-count: 3
+#    min-spare-threads: 3
+#    threads:
+#      max: 12
+#      min-spare: 12
 spring:
   application:
     name: r2dbc-demo
