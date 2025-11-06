@@ -1,45 +1,25 @@
 server:
   port: 8080
+  servlet:
+    context-path: /r2dbc
   shutdown: graceful
 spring:
   application:
     name: r2dbc-demo
-  webflux:
-    base-path: /r2dbc
   codec:
     max-in-memory-size: 50MB
-  r2dbc:
-    # 默认链接
-#    url: r2dbc:postgresql://111:5432/jingle
-#    username: 111
-#    password: 111
-    # 连接池链接 方式1。推荐
-    # 在ConnectionFactoryBuilder.PoolingAwareOptionsCapableWrapper.buildAndWrap中验证是否生效。initialSize和maxSize默认值10
-    url: r2dbc:pool:postgresql://111:5432/jingle?maxSize=15&minIdle=15&initialSize=15
-    username: postgres
-    password: 1
-    # 连接池链接 方式2
-    #PoolConfiguration.PooledConnectionFactoryConfiguration.connectionFactory这里注入连接池
-#    url: r2dbc:postgresql://111:5432/jingle
-#    username: 1
-#    password: 1
-#    pool:
-#      # 是否启用连接池（需要 r2dbc-pool 依赖）
-#      enabled: true
-#      # 最小空闲连接数
-#      min-idle: 0
-#      # 连接在池中最大空闲时间
-#      max-idle-time: 30m
-#      # 初始连接池大小
-#      initial-size: 10
-#      # 最大连接池大小
-#      max-size: 10
-
-
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://111:5432/jingle?prepareThreshold=0
+    username: 111
+    password: 111
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 40
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      connectionTimeout: 30000
 
 logging:
   pattern:
     console: "%boldMagenta(%d{yyyy-MM-dd HH:mm:ss.SSS}) | %highlight(%-5level) | %boldYellow(%-18t) | %boldGreen(%50.50logger{49}):%boldGreen(%-4.4line) | %msg%n"
- # 控制台输出sql
-  level:
-    org.springframework.r2dbc: DEBUG

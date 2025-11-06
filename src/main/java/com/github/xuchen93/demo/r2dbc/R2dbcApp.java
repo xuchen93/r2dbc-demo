@@ -2,9 +2,9 @@ package com.github.xuchen93.demo.r2dbc;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author YangZiYi
@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  **/
 @Slf4j
 @SpringBootApplication
-@EnableScheduling
+@MapperScan("com.github.xuchen93.demo.r2dbc.table.dao")
 public class R2dbcApp {
 
 	@SneakyThrows

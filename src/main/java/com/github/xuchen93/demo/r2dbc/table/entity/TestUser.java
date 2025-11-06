@@ -1,12 +1,13 @@
 package com.github.xuchen93.demo.r2dbc.table.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 
 /**
@@ -22,14 +23,14 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-@Table
+@TableName("test_user")
 public class TestUser {
 
 	/**
 	 * 主键ID
 	 * 对应字段：id
 	 */
-	@Id
+	@TableId(value = "id", type = IdType.AUTO)
 	private Long id;
 
 	/**
